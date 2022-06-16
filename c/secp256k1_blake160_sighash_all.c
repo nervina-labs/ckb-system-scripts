@@ -53,7 +53,7 @@
 // the 64-byte compact recoverable signature.
 #define BLAKE2B_BLOCK_SIZE 32
 #define BLAKE160_SIZE 20
-#define MAX_ARGS_SIZE 32
+#define MAX_ARGS_SIZE 64
 #define PUBKEY_SIZE 33
 #define RECID_INDEX 64
 /* 320 KB */
