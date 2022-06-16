@@ -53,11 +53,13 @@
 // the 64-byte compact recoverable signature.
 #define BLAKE2B_BLOCK_SIZE 32
 #define BLAKE160_SIZE 20
+#define MAX_ARGS_SIZE 32
 #define PUBKEY_SIZE 33
-#define TEMP_SIZE 32768
 #define RECID_INDEX 64
+/* 320 KB */
+#define TEMP_SIZE 327680
+#define MAX_WITNESS_SIZE 327680
 /* 32 KB */
-#define MAX_WITNESS_SIZE 32768
 #define SCRIPT_SIZE 32768
 #define SIGNATURE_SIZE 65
 
@@ -103,7 +105,7 @@ int main() {
 
   mol_seg_t args_seg = MolReader_Script_get_args(&script_seg);
   mol_seg_t args_bytes_seg = MolReader_Bytes_raw_bytes(&args_seg);
-  if (args_bytes_seg.size != BLAKE160_SIZE) {
+  if (args_bytes_seg.size < BLAKE160_SIZE  || args_bytes_seg.size > MAX_ARGS_SIZE) {
     return ERROR_ARGUMENTS_LEN;
   }
 
